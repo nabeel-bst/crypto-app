@@ -1,13 +1,106 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html body {
+
+  background-color: black;
+  height: 100%;
+  width: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.p-3 {
+  border: 0ch;
+  border-radius: '10px';
+  display: inline-block;
+  width: 100%;
+  height: 25px;
+}
+
+.text-field {
+  border-radius: 5px;
+  height: 30px;
+  width: 300px;
+  padding: 5px;
+}
+
+
+.parent {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pad {
+  height: 50px;
+}
+
+.coin-text {
+  text-decoration-thickness: 50px;
+}
+
+.list-item {
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  /* background-color: white; */
+}
+
+hr {
+  display: flex;
+  height: 10px;
+  color: blueviolet;
+  width: 5px;
+  height: auto;
+}
+
+.item-price {
+  display: flex;
+  width: 100;
+}
+
+.item-image {
+  padding-right: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+h3.bt {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.item-name {
+  padding-left: 3%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 200px;
+}
+
+
+.hd {
+  /* display: flex; */
+  margin: 15px;
+  width: auto;
+  height: 2px;
+  background-color: grey;
+}
+
+.l-it {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mkt-col-str {
+  padding-right: 2%;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
 }
