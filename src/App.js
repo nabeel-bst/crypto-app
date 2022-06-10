@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import CoinsList from "./CoinsList";
 import TextFieldWithRef from "./TextFieldWithRef.tsx";
+import Pagination from './Pagination/Pagination'
 
 function App() {
 
@@ -10,32 +11,74 @@ function App() {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const firstItems = [];
+  var [currentPage, setCurrentPage] = useState(1);
   const [items, setItems] = useState([]);
+  var [pages, setPages] = useState([{ pno: 1, active: true }, { pno: 2, active: false }, { pno: 3, active: false }, { pno: 4, active: false }, { pno: 5, active: false }]);
 
-  const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+
+  const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=8&page=' + currentPage + '&sparkline=false';
+
+  const myFun = pNo => {
+    currentPage = pNo;
+    console.log("Pressed " + pNo);
+    if (pNo < 3) {
+      pages.forEach((page) => {
+        if (page.pno == currentPage) {
+          page.active = true;
+        } else {
+          page.active = false;
+        }
+      });
+    } else {
+      console.log("PAGES " + pages);
+      const newItems = [];
+
+      if (pNo - 2 > 0) {
+        var ob3 = { pno: pNo - 2, active: false };
+        newItems.push(ob3);
+
+      }
+      if (pNo - 1 > 0) {
+        var ob2 = { pno: pNo - 1, active: false };
+        newItems.push(ob2);
+      }
+
+      for (var i = pNo; i < pNo + 3; i++) {
+        console.log("Running Loop " + newItems);
+        var obj = { pno: i, active: false };
+        if (i == pNo) {
+          obj.active = true;
+        }
+        newItems.push(obj);
+      }
 
 
+      setPages(newItems);
+
+      console.log("PAGES " + newItems);
+    }
+    setCurrentPage(currentPage);
+
+  }
 
   useEffect(() => {
-    if (items.length == 0) {
-      fetch(apiUrl).then((res) => res.json()).then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
+    fetch(apiUrl).then((res) => res.json()).then(
+      (result) => {
+        setIsLoaded(true);
+        setItems(result);
 
-          console.log("FIRST RUN");
-          console.log(result);
+        console.log("FIRST RUN");
+        console.log(result);
 
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    )
 
-    if (val !== "") {
+
+    if (val != "") {
       const newItems = items.filter((item) => {
         return item.name.includes(val);
       })
@@ -46,7 +89,7 @@ function App() {
 
     console.log("USE EFF RAN");
 
-  }, [val]);
+  }, [val, currentPage]);
 
 
   if (error) {
@@ -65,6 +108,7 @@ function App() {
           />
           <div className="pad"></div>
           <CoinsList items={items} />
+          <Pagination myFun={myFun} pages={pages} />
         </div>
       </div>
     );

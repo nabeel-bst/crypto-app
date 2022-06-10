@@ -1,5 +1,4 @@
 html body {
-
   background-color: black;
   height: 100%;
   width: 100%;
@@ -103,4 +102,17 @@ h3.bt {
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
+}
+
+.pagination {
+  color: aliceblue;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.pg-item {
+  padding: 1%;
+  height: 20px;
+  width: 20px;
 }

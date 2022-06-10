@@ -8,7 +8,6 @@ const CoinsList = ({ items }) => {
     return (
         <div className="parent">
             {items.map(item => (
-
                 <div className="list-item" key={item.id}>
                     <div className='l-it' >
                         <div className="item-name">
@@ -44,15 +43,10 @@ const CoinsList = ({ items }) => {
 
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div className="hd">
                     </div>
                 </div>
-
             ))}
         </div>
     );
